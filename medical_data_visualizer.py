@@ -21,7 +21,7 @@ def draw_cat_plot():
     df_cat = pd.melt(df, id_vars=['cardio'], value_vars=colunas)
 
     # 6 - Conta a frequência de cada combinação e cria uma coluna 'total'
-    df_cat = df_cat.value_counts().reset_index(name='total')
+    df_cat = df_cat.groupby(['cardio', 'variable', 'value']).size().reset_index(name='total')
 
     # 7 - Define a ordem desejada e cria um gráfico de barras
     ordem = ['active', 'alco', 'cholesterol', 'gluc', 'overweight', 'smoke']
